@@ -1,0 +1,40 @@
+*{
+    cursor: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.stroke {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    transition: color 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.stroke:hover {
+    color: white;
+}
+
+.strokeNohover {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    transition: color 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.htmlScreen iframe {
+    width: 1065px;
+    height: 830px;
+    border: none;
+    background: #000000;
+}
+
+.cursor-outer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+}

@@ -12,6 +12,24 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily:{
+        sans: ['var(--font-monu)'],
+        chi: ['var(--font-chinese)'],
+        fraktionMono: ['var(--font-fraktion)']
+      },
+      screens: {
+        xl: { max: "1279px" },
+        // => @media (max-width: 1279px) { ... }
+  
+        lg: { max: "1023px", min: "640px" },
+        // => @media (max-width: 1023px) { ... }
+  
+        md: { max: "767px" },
+        // => @media (max-width: 767px) { ... }
+  
+        sm: { max: "639px" },
+        // => @media (max-width: 639px) { ... }
+      },
     },
   },
   plugins: [],
