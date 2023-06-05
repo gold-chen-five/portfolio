@@ -57,7 +57,7 @@ function Experience({textState}) {
         {/* <Computer /> */}
         
 
-        <Environment preset="city" />
+        <Environment path="/hdri/" files="potsdamer_platz_1k.hdr"/>
          
         {enabled && <SoftShadows />}
       
