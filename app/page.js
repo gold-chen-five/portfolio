@@ -1,7 +1,7 @@
 'use client'
 import { page } from './contant.js'
 import dynamic from 'next/dynamic';
-import Load from './scenes/loading/Load.js';
+import Load from './scenes/load/Load.js';
 import IntroComponent from './scenes/IntroComponent.js'
 import WorkComponent from './scenes/WorkComponent.js'
 import ConactCard from './scenes/ConactCard.js'
