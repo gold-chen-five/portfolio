@@ -35,13 +35,13 @@ export default function Home() {
   
   useEffect(() => {
     const handelPageComplete = () => setPageComplete(true);
-    if( document.readyState === 'complete'){
-      handelPageComplete()
-    }else{
-      window.addEventListener("load", handelPageComplete);
-      return window.removeEventListener("load", handelPageComplete);
-    }
-    
+    // if( document.readyState === 'complete'){
+    //   handelPageComplete()
+    // }else{
+    //   window.addEventListener("load", handelPageComplete);
+    //   return window.removeEventListener("load", handelPageComplete);
+    // }
+    handelPageComplete()
     
   }, [])
 
