@@ -1,7 +1,7 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 
-export default function loading({pageComplete, setLoading}){
+export default function Load({pageComplete, setLoading}){
     useEffect(() => {
         if(pageComplete){
             setTimeout(() => {setLoading(false)},2000)

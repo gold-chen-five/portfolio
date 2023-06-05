@@ -1,24 +1,7 @@
 'use client'
 import { page } from './contant.js'
 import dynamic from 'next/dynamic';
-import Loading from './scenes/loading/load.js';
-// const IntroComponent = dynamic(() => import('./scenes/IntroComponent.js'), {
-//   ssr: false,
-// })
-// const WorkComponent = dynamic(() => import('./scenes/WorkComponent.js'), {
-//   ssr: false,
-// })
-// const ConactCard = dynamic(() => import('./scenes/ConactCard.js'), {
-//   ssr: false,
-// })
-// const IntroButton = dynamic(() => import('./scenes/IntroButton.js'), {
-//   ssr: false,
-// })
-// const IntroduceText = dynamic(() => import('./scenes/IntroduceText.js'), {
-//   ssr: false,
-//   loading: (e) => <Loading process={e}/>
-// })
-
+import Load from './scenes/loading/Load.js';
 import IntroComponent from './scenes/IntroComponent.js'
 import WorkComponent from './scenes/WorkComponent.js'
 import ConactCard from './scenes/ConactCard.js'
@@ -68,7 +51,7 @@ export default function Home() {
       onMouseMove={(e) => handleMouseMove(e)}
     >
       {/* <div style={{height: `300vh`}}></div> */}
-      { loading && <Loading pageComplete={pageComplete} setLoading={setLoading}/>}
+      { loading && <Load pageComplete={pageComplete} setLoading={setLoading}/>}
       <IntroComponent />
       <WorkComponent />
       <ConactCard />
