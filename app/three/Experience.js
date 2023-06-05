@@ -7,7 +7,6 @@ import Television from './Television.js'
 import Tv from './Tv.js'
 import Car from './Car.js';
 import Spotlight from './Spotlight.js';
-import Loading from '../scenes/loading/Load.js';
 function Experience({textState}) {
   const [enabled, enable] = useState(true)
   const { intro } = useIntro()
