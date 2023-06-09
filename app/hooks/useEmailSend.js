@@ -1,15 +1,13 @@
 import { useState } from "react"
 
 export const useEmailSend = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
-    const [isSend, setIsSend] = useState(false)
+    const [status, setStatus] = useState('typing')
 
     const handleSendEmail = async (name, email, text) => {
         const data = { name, email, text}
        
         try{
-            setIsLoading(true)
+            setStatus('loading')
             const response = await fetch('/api/sendEmail',{
                 method: 'POST',
                 headers: {
@@ -18,14 +16,16 @@ export const useEmailSend = () => {
                 body: JSON.stringify(data)
             })
             const result = await response.json()
-            setIsLoading(false)
-            setIsSend(true)
+            if(response.status !== 200) throw new Error(result)
+            setStatus('finish')
         }
         catch(err){
-            setIsLoading(false)
-            setIsError(true)
+            console.log(err.message)
+            setStatus('error')
         }
     }
-
-    return { isLoading, isError, isSend, setIsSend, handleSendEmail}
+    const isLoading = status === 'loading'
+    const isError = status === 'error'
+    const isSend = status === 'finish' 
+    return { isLoading, isError, isSend, status, setStatus, handleSendEmail}
 }

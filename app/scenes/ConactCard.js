@@ -10,7 +10,7 @@ function ConactCard() {
   const { scrollYProgress } = useScroll()
   const [transformClick, setTransformClick] = useState(true)
   const { setCardBackSide } = useCard()
-  const { isLoading, isError, isSend, setIsSend, handleSendEmail} = useEmailSend()
+  const { isLoading, isError, isSend, status,setStatus, handleSendEmail} = useEmailSend()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [text, setText] = useState('')
@@ -26,20 +26,19 @@ function ConactCard() {
   },[])
 
   const handleSendOnclick = async () => {
-    if(name === '' || email === '' || text === '')  return 
-    if(isLoading || isSend)  return
+    if(name.length === 0 || email.length === 0 || text.length === 0)  return 
+    if(status !== 'typing')  return
     await handleSendEmail(name, email, text)
   }
 
   useEffect(() => {
-    if(isSend){
+    if(status === 'finish' || status === 'error'){
         setName('')
         setEmail('')
         setText('')
-        setTimeout(() => setIsSend(false), 1500)
+        setTimeout(() => setStatus('typing'), 1500)
     }
-  },[isSend])
-
+  },[status])
   return (
     <animated.div
         className=' fixed top-1/2 left-12 -translate-y-1/2 sm:w-10/12 sm:top-1/3 sm:left-1/2 sm:-translate-x-1/2 lg:w-1/2 lg:top-1/3 lg:left-1/2 lg:-translate-x-1/2'
@@ -50,7 +49,7 @@ function ConactCard() {
                 return '0'
             }),
             zIndex: scrollYProgress.to(scrollY => {
-                if(scrollY * page > 16.5)  return '60'
+                if(scrollY * page > 16.5)  return '70'
                 return '10'
             }),
         }}
@@ -106,6 +105,7 @@ function ConactCard() {
                         className='border-b border-black bg-transparent outline-none w-4/5'
                         value={name}
                         onChange={e => setName(e.target.value)}
+                        disabled={status !== 'typing'}
                     />
                 </div>
                 <div className=' flex w-full justify-center items-center'>
@@ -115,6 +115,7 @@ function ConactCard() {
                         className='border-b border-black bg-transparent outline-none w-4/5'
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        disabled={status !== 'typing'}
                     />
                 </div>
                 <div className=' flex w-full justify-center items-center'>
@@ -124,13 +125,20 @@ function ConactCard() {
                         className='border-b border-black bg-transparent outline-none w-4/5'
                         value={text}
                         onChange={e => setText(e.target.value)}
+                        disabled={status !== 'typing'}
                     />
                 </div>
                 <button 
                     className='text-sm vidaloka.className font-bold border-black'
                     onClick={handleSendOnclick}
+                    disabled={status !== 'typing'}
                 >
-                    { isLoading ? 'Loading' : isSend ? 'Send successfull' : 'Send'}
+                    { 
+                        isLoading ? 'Loading' 
+                            : isSend ? 'Send successfull' 
+                            : isError ? 'Email not exist' 
+                            : 'Send'
+                    }
                 </button>
             </div>
         </div>

@@ -81,7 +81,7 @@ async function nodemailToClient(name, clientEmail, text){
                     </style>
                 </head>
                 <body>
-                    <h1>你好, ${name} 我是潘宗諭, 是一名軟體開發人員</h1>
+                    <h1>你好, ${name}。我是潘宗諭, 是一名軟體開發人員</h1>
                     <h1>感謝你瀏覽我的網站!</h1>
                     <p>如有興趣與我合作可連繫我的Email</p>
                     <p>rachel7465022@gmail.com</p>
@@ -108,12 +108,13 @@ export async function POST(request) {
 
     try{
         const { name, email, text } = res
-        const ok = await nodemailMyself(name, email, text)
-        const ok2 = await nodemailToClient(name, email, text)
+        const ok = await nodemailToClient(name, email, text)
+        const ok2 = await nodemailMyself(name, email, text)
+        
         return NextResponse.json({ message: 'successful' }, { status: 200 });
     }
     catch(error){
-        console.log(error.message)
+        console.log('error')
         return NextResponse.json({ message: 'email send error' }, { status: 500 });
     }
    

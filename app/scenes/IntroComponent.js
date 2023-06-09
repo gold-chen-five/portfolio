@@ -29,7 +29,7 @@ function IntroComponent() {
     return (
         <>
             <animated.video 
-                src="/chetbaker.mp4" autoPlay muted loop 
+                src="/videos/iphone.mp4" autoPlay muted loop 
                 className='w-full h-screen fixed top-0 left-0 border-2 border-black object-cover z-30'
                 style={{
                     opacity: springs.opacity.to((opacity) => opacity)
